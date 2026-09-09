@@ -2170,9 +2170,20 @@ section { position: relative; }
 .footer-logo-col { display: flex; flex-direction: column; gap: 16px; }
 
 .footer-logo {
-  filter: brightness(0) invert(1);
-  height: 44px;
+  height: 75px;
   width: auto;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  display: inline-block;
+  object-fit: contain;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 .footer-brand-desc {
