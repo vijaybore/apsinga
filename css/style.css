@@ -734,6 +734,8 @@ section { position: relative; }
   border-radius: var(--radius-full);
   margin-bottom: 24px;
   letter-spacing: 0.02em;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .badge-dot {
@@ -772,7 +774,11 @@ section { position: relative; }
   background: var(--clr-gold-light);
   border-left: 4px solid var(--clr-gold);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  display: inline-block;
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-desc {
@@ -2515,7 +2521,7 @@ section { position: relative; }
   }
   .hero-content {
     max-width: 100%;
-    padding: 50px 0 30px 0;
+    padding: 50px clamp(20px, 4vw, 48px) 30px clamp(20px, 4vw, 48px);
   }
   .hero-form-card {
     margin-top: 0;
@@ -2598,7 +2604,8 @@ section { position: relative; }
 
   /* Hero Section */
   .hero-content {
-    padding: 32px 0 20px 0;
+    padding: 32px 20px 24px 20px;
+    max-width: 100%;
   }
   .hero-badge-pill {
     font-size: 0.76rem;
@@ -2612,11 +2619,11 @@ section { position: relative; }
     line-height: 1.15;
   }
   .hero-marathi-punch {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     padding: 8px 12px;
     margin-bottom: 16px;
     display: block;
-    width: fit-content;
+    width: auto;
     max-width: 100%;
   }
   .hero-desc {
@@ -2636,9 +2643,18 @@ section { position: relative; }
     flex-direction: column;
     width: 100%;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Quick Call Chips - stack on mobile */
+  .hero-call-chips {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hero-call-chips .btn {
     width: 100%;
     justify-content: center;
   }
