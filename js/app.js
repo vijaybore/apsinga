@@ -56,13 +56,13 @@ function initNavigation() {
   function openDrawer() {
     if (mobileDrawer) mobileDrawer.classList.add('open');
     if (drawerOverlay) drawerOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('drawer-open');
   }
 
   function closeDrawer() {
     if (mobileDrawer) mobileDrawer.classList.remove('open');
     if (drawerOverlay) drawerOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.classList.remove('drawer-open');
   }
 
   if (menuToggle) menuToggle.addEventListener('click', openDrawer);
@@ -90,22 +90,31 @@ function initModals() {
   const modalOverlay = document.getElementById('modalOverlay');
   const openModalBtns = document.querySelectorAll('.trigger-survey-modal');
   const closeModalBtns = document.querySelectorAll('.close-modal-btn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerOverlay = document.getElementById('drawerOverlay');
 
   function openSurveyModal(serviceName) {
+    // Close mobile drawer if open
+    if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+      mobileDrawer.classList.remove('open');
+      if (drawerOverlay) drawerOverlay.classList.remove('active');
+      document.body.classList.remove('drawer-open');
+    }
+
     if (surveyModal) {
       if (serviceName && document.getElementById('modalServiceType')) {
         document.getElementById('modalServiceType').value = serviceName;
       }
       surveyModal.classList.add('active');
       if (modalOverlay) modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
     }
   }
 
   function closeSurveyModal() {
     if (surveyModal) surveyModal.classList.remove('active');
     if (modalOverlay) modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.classList.remove('modal-open');
   }
 
   openModalBtns.forEach(btn => {
