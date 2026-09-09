@@ -102,6 +102,11 @@ img, svg, video, iframe, object {
   height: auto;
 }
 
+/* Universal overflow protection - prevent any element from causing horizontal scroll */
+.container, section, header, footer, nav, main, article, aside {
+  max-width: 100%;
+}
+
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -894,6 +899,7 @@ section { position: relative; }
   box-shadow: var(--shadow-xl);
   padding: 36px 40px;
   border: 1px solid var(--clr-slate-200);
+  overflow: hidden;
 }
 
 .form-card-title {
@@ -983,7 +989,8 @@ section { position: relative; }
   color: rgba(255,255,255,0.9);
   font-size: 0.86rem;
   font-weight: 700;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
 }
 
 .trust-item-icon {
@@ -2004,6 +2011,8 @@ section { position: relative; }
   color: var(--clr-white);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-info-card::before {
@@ -2066,6 +2075,8 @@ section { position: relative; }
   font-size: 0.95rem;
   color: var(--clr-white);
   line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-detail-value a:hover { color: var(--clr-gold); }
@@ -2118,6 +2129,9 @@ section { position: relative; }
   padding: 48px 44px;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--clr-slate-200);
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-form-title {
@@ -2634,6 +2648,8 @@ section { position: relative; }
     padding: 22px 16px;
     margin: 0;
     border-radius: var(--radius-lg);
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   .form-card-title {
     font-size: 1.25rem;
@@ -2642,11 +2658,13 @@ section { position: relative; }
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .quick-form-grid #heroQuickFormBtn {
+  .quick-form-grid #heroQuickFormBtn,
+  .quick-form-grid button[type="submit"] {
     grid-column: 1 / -1;
     width: 100%;
     height: 48px;
     justify-content: center;
+    white-space: normal;
   }
 
   /* Solar Calculator */
@@ -2759,7 +2777,10 @@ section { position: relative; }
   .stat-card { padding: 20px 14px; }
   .stat-number { font-size: 2rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+  .contact-info-card { padding: 28px 20px; }
+  .contact-form-card { padding: 28px 20px; }
   .contact-form-grid { grid-template-columns: 1fr; gap: 10px; }
+  .contact-form-title { font-size: 1.3rem; }
   .cta-actions { flex-direction: column; width: 100%; }
   .cta-actions .btn { width: 100%; justify-content: center; }
 
@@ -2767,8 +2788,9 @@ section { position: relative; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
   .footer-bottom-links { justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .trust-strip-inner { gap: 16px; }
+  .trust-strip-inner { gap: 12px; flex-wrap: wrap; justify-content: center; }
   .trust-divider { display: none; }
+  .trust-item { font-size: 0.8rem; gap: 8px; }
 
   /* Floating Buttons */
   .floating-actions {
@@ -2888,5 +2910,62 @@ section { position: relative; }
   }
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+  .contact-info-card { padding: 22px 16px; }
+  .contact-form-card { padding: 22px 16px; }
+  .hero-form-card { padding: 18px 14px; }
+}
+
+/* ===========================================
+   GLOBAL MOBILE OVERFLOW SAFETY NET
+   =========================================== */
+@media (max-width: 768px) {
+  /* Prevent ANY element from exceeding screen width */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Allow sliders and media to ignore max-width constraint */
+  input[type="range"] {
+    max-width: 100%;
+  }
+
+  /* Specific overrides for fixed/absolute positioned elements */
+  .floating-actions,
+  .scroll-to-top,
+  .mobile-drawer,
+  .survey-modal-overlay,
+  .site-toast {
+    max-width: none;
+  }
+
+  /* Ensure long text wraps */
+  p, h1, h2, h3, h4, h5, h6, span, div, li, a {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  /* Buttons should never overflow */
+  .btn {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix any remaining card padding issues */
+  .calculator-card,
+  .hero-form-card,
+  .contact-info-card,
+  .contact-form-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Prevent section backgrounds from causing overflow */
+  .hero-bg-decor,
+  .hero-circle-1,
+  .hero-circle-2 {
+    overflow: hidden;
   }
 }
