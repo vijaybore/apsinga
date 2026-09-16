@@ -497,6 +497,7 @@ section { position: relative; }
   letter-spacing: -0.015em;
   background: linear-gradient(135deg, #063E22 0%, #0B5E34 45%, #15803D 80%, #16A34A 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #0B5E34;
   display: inline-block;
