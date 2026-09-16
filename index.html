@@ -31,7 +31,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=3.5" />
+  <style>
+    /* Critical Brand Styling (Zero FOUC & Immediate Cache Bypass) */
+    .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-box { display: flex; align-items: center; justify-content: center; background: #ffffff; border-radius: 9px; padding: 2.5px; box-shadow: 0 2px 8px rgba(11,94,52,0.14); border: 1.5px solid rgba(11,94,52,0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .header-logo:hover .logo-box { transform: scale(1.05) rotate(-1deg); box-shadow: 0 4px 14px rgba(11,94,52,0.25); }
+    .logo-img { height: 48px; width: auto; border-radius: 6px; object-fit: contain; display: block; }
+    .header-brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
+    .brand-name-title { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.015em; background: linear-gradient(135deg, #063E22 0%, #0B5E34 45%, #15803D 80%, #16A34A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: #0B5E34; display: inline-block; line-height: 1.05; }
+    .brand-name-subtitle { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #1E293B; display: flex; align-items: center; gap: 4px; line-height: 1.15; }
+    .brand-name-subtitle .brand-accent-word { color: #0B5E34; font-weight: 900; }
+    .brand-name-subtitle .brand-spark { color: #F59E0B; font-size: 0.68rem; display: inline-block; }
+    @media (max-width: 480px) {
+      .header-logo { gap: 8px; }
+      .logo-img { height: 42px; }
+      .brand-name-title { font-size: 1.15rem; }
+      .brand-name-subtitle { font-size: 0.64rem; letter-spacing: 0.06em; }
+    }
+  </style>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -90,9 +108,15 @@
      ============================================= -->
 <header class="site-header" id="site-header">
   <div class="container header-inner">
-    <!-- Logo -->
+    <!-- Logo & Brand Name -->
     <a href="#" class="header-logo" aria-label="Apsinga Tech Infra Solutions - Home">
-      <img src="assets/icons/newlogo.jpeg" alt="Apsinga Tech Infra Solutions Logo" class="logo-img" />
+      <div class="logo-box">
+        <img src="assets/icons/newlogo.jpeg" alt="Apsinga Tech Infra Solutions Logo" class="logo-img" />
+      </div>
+      <div class="header-brand-text">
+        <span class="brand-name-title">APSINGA</span>
+        <span class="brand-name-subtitle">TECH INFRA <span class="brand-accent-word">SOLUTIONS</span><span class="brand-spark" aria-hidden="true">✦</span></span>
+      </div>
     </a>
 
     <!-- Desktop Navigation -->
@@ -135,7 +159,15 @@
 <!-- Mobile Drawer -->
 <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation" role="dialog" aria-modal="true">
   <div class="drawer-header">
-    <img src="assets/icons/newlogo.jpeg" alt="Apsinga Logo" style="height: 50px; width: auto; border-radius: 4px;" />
+    <a href="#" class="drawer-logo-link" aria-label="Apsinga Tech Infra Solutions - Home">
+      <div class="logo-box" style="padding:2px; border-radius:8px;">
+        <img src="assets/icons/newlogo.jpeg" alt="Apsinga Logo" class="drawer-logo-img" />
+      </div>
+      <div class="drawer-brand-name">
+        <span class="brand-name-title" style="font-size:1.15rem;">APSINGA</span>
+        <span class="brand-name-subtitle" style="font-size:0.65rem;">TECH INFRA <span class="brand-accent-word">SOLUTIONS</span><span class="brand-spark" aria-hidden="true">✦</span></span>
+      </div>
+    </a>
     <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">✕</button>
   </div>
   <div class="drawer-nav">
